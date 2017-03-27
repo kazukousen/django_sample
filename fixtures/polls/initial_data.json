@@ -1,0 +1,37 @@
+[
+  {
+    "model": "polls.question",
+    "pk": 2,
+    "fields": {
+      "question_text": "What's up?",
+      "pub_date": "2017-03-23T18:24:32"
+    }
+  },
+  {
+    "model": "polls.choice",
+    "pk": 1,
+    "fields": {
+      "question": 2,
+      "choice_text": "Not much",
+      "votes": 4
+    }
+  },
+  {
+    "model": "polls.choice",
+    "pk": 2,
+    "fields": {
+      "question": 2,
+      "choice_text": "The sky",
+      "votes": 2
+    }
+  },
+  {
+    "model": "polls.choice",
+    "pk": 3,
+    "fields": {
+      "question": 2,
+      "choice_text": "The Mountain",
+      "votes": 2
+    }
+  }
+]
