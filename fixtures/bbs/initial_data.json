@@ -1,0 +1,43 @@
+[
+  {
+    "model": "bbs.post",
+    "pk": 1,
+    "fields": {
+      "title": "Auto-Encoding Variational Bayes",
+      "description": "https://arxiv.org/abs/1312.6114",
+      "description_html": "",
+      "pub_date": "2017-04-12T17:07:36.970",
+      "updated_date": "2017-04-12T17:07:36.970",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  },
+  {
+    "model": "bbs.comment",
+    "pk": 1,
+    "fields": {
+      "post": 1,
+      "parent_comment": null,
+      "body": "Nice paper.",
+      "body_html": "",
+      "pub_date": "2017-04-12T17:07:59.409",
+      "updated_date": "2017-04-12T17:07:59.409",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  },
+  {
+    "model": "bbs.comment",
+    "pk": 2,
+    "fields": {
+      "post": 1,
+      "parent_comment": 1,
+      "body": "hey, I have a question.",
+      "body_html": "",
+      "pub_date": "2017-04-12T17:08:19.060",
+      "updated_date": "2017-04-12T17:08:19.060",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  }
+]
