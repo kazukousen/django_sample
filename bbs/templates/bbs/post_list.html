@@ -2,7 +2,7 @@
   <ul>
   {% for post in object_list %}
     <li>
-      {{ post.title }}
+      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
   </ul>

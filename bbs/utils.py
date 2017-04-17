@@ -1,4 +1,5 @@
 import datetime
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import InvalidPage, Paginator
 from django.http import Http404, HttpResponse
 from django.template import loader
@@ -25,14 +26,6 @@ def object_list(request, queryset, paginate_by=None, page=None,
             page_obj = paginator.page(page_number)
         except InvalidPage:
             raise Http404
-        try:
-            next_page = page_obj.next_page_number()
-        except InvalidPage:
-            next_page = None
-        try:
-            previous_page = page_obj.previous_page_number()
-        except InvalidPage:
-            previous_page = None
 
         c = {
             '{}_list'.format(template_object_name): page_obj.object_list,
@@ -56,3 +49,22 @@ def object_list(request, queryset, paginate_by=None, page=None,
                                                           object=model._meta.object_name.lower())
     t = loader.get_template(template_name)
     return HttpResponse(t.render(c, request=request), content_type=content_type)
+
+def object_detail(request, queryset, object_id=None, template_name=None,
+                  template_object_name='object', content_type=None):
+    model = queryset.model
+    if object_id:
+        queryset = queryset.filter(pk=object_id)
+    try:
+        obj = queryset.get()
+    except ObjectDoesNotExist:
+        raise Http404('No {} found matching the query'.format(model._meta.verbose_name))
+    if template_name is None:
+        template_name = '{app}/{object}_detail.html'.format(app=model._meta.app_label,
+                                                    object=model._meta.object_name.lower())
+    t = loader.get_template(template_name)
+    c = {
+        template_object_name: obj,
+    }
+    response = HttpResponse(t.render(c, request=request), content_type=content_type)
+    return response

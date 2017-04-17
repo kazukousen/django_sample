@@ -8,8 +8,6 @@ class CommentInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     inlines = [CommentInline]
 
-class CommentAdmin(admin.ModelAdmin):
-    inlines = [CommentInline]
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Comment)

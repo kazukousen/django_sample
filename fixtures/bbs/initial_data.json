@@ -6,10 +6,10 @@
       "title": "Auto-Encoding Variational Bayes",
       "description": "https://arxiv.org/abs/1312.6114",
       "description_html": "",
-      "pub_date": "2017-04-12T17:07:36.970",
-      "updated_date": "2017-04-12T17:07:36.970",
+      "pub_date": "2017-04-17T16:31:37.144",
+      "updated_date": "2017-04-17T16:31:37.144",
       "bookmark_count": 0,
-      "rating_score": 0
+      "rating_score": 6
     }
   },
   {
@@ -17,11 +17,11 @@
     "pk": 1,
     "fields": {
       "post": 1,
-      "parent_comment": null,
+      "path": "/1/",
       "body": "Nice paper.",
       "body_html": "",
-      "pub_date": "2017-04-12T17:07:59.409",
-      "updated_date": "2017-04-12T17:07:59.409",
+      "pub_date": "2017-04-17T16:32:28.387",
+      "updated_date": "2017-04-17T16:32:28.387",
       "bookmark_count": 0,
       "rating_score": 0
     }
@@ -31,11 +31,53 @@
     "pk": 2,
     "fields": {
       "post": 1,
-      "parent_comment": 1,
-      "body": "hey, I have a question.",
+      "path": "/1/2/",
+      "body": "I have a question.",
       "body_html": "",
-      "pub_date": "2017-04-12T17:08:19.060",
-      "updated_date": "2017-04-12T17:08:19.060",
+      "pub_date": "2017-04-17T16:33:01.274",
+      "updated_date": "2017-04-17T16:33:01.274",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  },
+  {
+    "model": "bbs.comment",
+    "pk": 3,
+    "fields": {
+      "post": 1,
+      "path": "/3/",
+      "body": "FUCK",
+      "body_html": "",
+      "pub_date": "2017-04-17T16:33:13.680",
+      "updated_date": "2017-04-17T16:33:13.680",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  },
+  {
+    "model": "bbs.comment",
+    "pk": 4,
+    "fields": {
+      "post": 1,
+      "path": "/3/4/",
+      "body": "I hate you.",
+      "body_html": "",
+      "pub_date": "2017-04-17T16:33:36.798",
+      "updated_date": "2017-04-17T16:33:36.798",
+      "bookmark_count": 0,
+      "rating_score": 0
+    }
+  },
+  {
+    "model": "bbs.comment",
+    "pk": 5,
+    "fields": {
+      "post": 1,
+      "path": "/1/2/5/",
+      "body": "What's up?",
+      "body_html": "",
+      "pub_date": "2017-04-17T16:33:58.588",
+      "updated_date": "2017-04-17T16:33:58.588",
       "bookmark_count": 0,
       "rating_score": 0
     }
