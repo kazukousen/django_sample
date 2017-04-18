@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-import math
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -35,5 +34,7 @@ class Comment(models.Model):
         return self.body[:20]
 
     def path_indentation_range(self):
-        length = math.floor(len(self.path) / 2)
-        return range(length - 1)
+        length = len(self.path)
+        not_slash_length = len(self.path.replace('/', ''))
+        slash_length = length - not_slash_length
+        return range(slash_length - 2)
