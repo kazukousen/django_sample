@@ -29,12 +29,14 @@ class Comment(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     bookmark_count = models.IntegerField(default=0)
     rating_score = models.IntegerField(default=0)
+    path_depth = models.PositiveIntegerField(editable=False, default=1)
 
     def __str__(self):
         return self.body[:20]
 
-    def path_indentation_range(self):
-        length = len(self.path)
-        not_slash_length = len(self.path.replace('/', ''))
-        slash_length = length - not_slash_length
-        return range(slash_length - 2)
+    def save(self, *args, **kwargs):
+        self.path_depth = len(self.path) - len(self.path.replace('/', '')) - 1
+        return super(Comment, self).save(*args, **kwargs)
+
+    def path_depth_range(self):
+        return range(1, self.path_depth)
