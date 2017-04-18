@@ -2,8 +2,12 @@
 
 <ul>
   {% for comment in object.get_comments %}
-  <li>
-    {{ comment.body }} -- rate: {{ comment.rating_score }}
-  </li>
+    {% for _ in comment.path_indentation_range %}
+      <ul>
+    {% endfor %}
+      <li>{{ comment.body }} -- rate: {{ comment.rating_score }}</li>
+    {% for _ in comment.path_indentation_range %}
+      </ul>
+    {% endfor %}
   {% endfor %}
 </ul>
