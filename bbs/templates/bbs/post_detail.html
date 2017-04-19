@@ -1,11 +1,11 @@
-{{ object.description }}
+{{ object.description_html|safe }}
 
 {% if nodes %}
   {% load mptt_tags %}
   <ul>
       {% recursetree nodes %}
           <li>
-              {{ node.body }} -- {{ node.rating_score }}
+              {{ node.body_html|safe }} -- {{ node.rating_score }} vote{{ node.rating_score|pluralize }}
               {% if not node.is_leaf_node %}
                   <ul class="children">
                       {{ children }}

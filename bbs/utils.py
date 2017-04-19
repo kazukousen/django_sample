@@ -1,8 +1,11 @@
 import datetime
+import bleach
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import InvalidPage, Paginator
 from django.http import Http404, HttpResponse
 from django.template import loader
+from django.utils.safestring import mark_safe
+from markdown import markdown as markdown_func
 
 def object_list(request, queryset, paginate_by=None, page=None,
                 allow_empty=True, template_name=None, template_object_name='object',
@@ -77,3 +80,15 @@ def object_detail(request, queryset, object_id=None, template_name=None,
         }
         response = HttpResponse(t.render(c, request=request), content_type=content_type)
     return response
+
+def sanitize_markdown(value):
+    return mark_safe(
+            bleach.clean(
+                bleach.linkify(markdown_func(value, extensions=['gfm'], tab_length=2)),
+                tags = [
+                    'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em',
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                    'i', 'li', 'ol', 'p', 'pre', 'strong', 'ul',
+                ],
+            )
+    )

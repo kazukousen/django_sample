@@ -1,0 +1,6 @@
+python-dotenv
+django-mptt
+bleach
+Markdown
+pygments
+py-gfm
