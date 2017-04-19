@@ -62,9 +62,18 @@ def object_detail(request, queryset, object_id=None, template_name=None,
     if template_name is None:
         template_name = '{app}/{object}_detail.html'.format(app=model._meta.app_label,
                                                     object=model._meta.object_name.lower())
-    t = loader.get_template(template_name)
-    c = {
-        template_object_name: obj,
-    }
-    response = HttpResponse(t.render(c, request=request), content_type=content_type)
+    try:
+        comments = obj.comment_set.all()
+        t = loader.get_template(template_name)
+        c = {
+            template_object_name: obj,
+            'nodes': comments,
+        }
+        response = HttpResponse(t.render(c, request=request), content_type=content_type)
+    except:
+        t = loader.get_template(template_name)
+        c = {
+            template_object_name: obj,
+        }
+        response = HttpResponse(t.render(c, request=request), content_type=content_type)
     return response
