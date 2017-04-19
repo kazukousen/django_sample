@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
+from .utils import sanitize_markdown
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -13,6 +14,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.description_html = sanitize_markdown(self.description)
+        super(Post, self).save(*args, *kwargs)
 
     def get_absolute_url(self):
         return reverse('bbs:post_detail', args=[self.id])
@@ -33,6 +38,10 @@ class Comment(MPTTModel):
 
     def __str__(self):
         return self.body[:20]
+
+    def save(self, *args, **kwargs):
+        self.body_html = sanitize_markdown(self.body)
+        super(Comment, self).save(*args, *kwargs)
 
     class MPTTMeta:
         order_insertion_by = ['-rating_score']
