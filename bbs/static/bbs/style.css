@@ -1,0 +1,39 @@
+.post-title h1 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #55f;
+}
+article {
+  background: #eee;
+  padding: 15px;
+  margin-left: 10px;
+}
+
+article table, tr, td, thead, th {
+  border-style: solid;
+  border-width: thin;
+}
+
+#comments {
+  margin: 0px;
+  padding: 0px;
+}
+
+.comment-head {
+  font-size: 18px;
+  padding: 5px;
+  border-bottom: 1px solid #bbb;
+}
+
+#comments section{
+  background: #dde;
+  margin-left: 30px;
+  padding: 5px;
+}
+
+#comments li {
+  border: 1px solid #aaa;
+  padding-left: 30px;
+  margin: 5px;
+  list-style: none;
+}
