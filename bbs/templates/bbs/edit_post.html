@@ -1,0 +1,24 @@
+{% extends "bbs/base.html" %}
+{% block title %}Editing "{{ form.instance.title }}"{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <h3 class="page-header">Editing "{{ form.instance.title }}"</h3>
+        <form class="form-horizontal" role="form" method="post" action="">{% csrf_token %}
+          <div class="field {% if form.title.errors %}error{% endif %}">
+            <label for="id_title"></label>
+            {{ form.title }}
+            {% if form.title.errors %}<small class="error">{{ form.title.errors|join:", " }}</small>{% endif %}
+          </div>
+          <div id="editor" class="field {% if form.description.errors %}error{% endif %}">
+            <label for="id_description"></label>
+            {{ form.description }}
+            {% if form.description.errors %}<small class="error">{{ form.description.errors|join:", " }}</small>{% endif %}
+          </div>
+          <div class="button-group"><button type="submit" class="btn btn-primary">Save</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
