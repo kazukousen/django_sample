@@ -1,11 +1,33 @@
-{% if object_list %}
-  <ul>
-  {% for post in object_list %}
-    <li>
-      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-  </ul>
-{% else %}
-  <p>No posts are available.</p>
-{% endif %}
+{% extends "bbs/base.html" %}
+{% block title %}スレッド一覧{% endblock %}
+{% block extrahead %}
+<style>
+  .row {
+    margin: 20px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="container">
+      <div class="jumbotron">
+        <p>
+          <h1 class="page-header">スレッド一覧</h1>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-12">
+      {% if object_list %}
+        <ul>
+        {% for post in object_list %}
+          <li>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>No posts are available.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
