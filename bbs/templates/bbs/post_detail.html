@@ -1,17 +1,50 @@
-{{ object.description_html|safe }}
+{% load static %}<!DOCTYPE html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'bbs/style.css' %}" />
+</style>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="post-title">
+        <h1>
+          {{ object.title }}
+        </h1>
+        <p>
+          date: <strong>{{ object.pub_date }}</strong>
+        </p>
+      </div>
+      <article>
+          {{ object.description_html|safe }}
+      </article>
+    </div>
+  </div>
 
-{% if nodes %}
-  {% load mptt_tags %}
-  <ul>
-      {% recursetree nodes %}
-          <li>
-              {{ node.body_html|safe }} -- {{ node.rating_score }} vote{{ node.rating_score|pluralize }}
-              {% if not node.is_leaf_node %}
-                  <ul class="children">
-                      {{ children }}
-                  </ul>
-              {% endif %}
-          </li>
-      {% endrecursetree %}
-  </ul>
-{% endif %}
+  {% if nodes %}
+  <div id="comments" class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <p class="comment-head">
+          全{{ nodes|length }}件のコメント
+        </p>
+      </div>
+      {% load mptt_tags %}
+      <ul class="accordion" data-accordion>
+          {% recursetree nodes %}
+              <li>
+                  date: <strong>{{ node.pub_date }}</strong> -- {{ node.rating_score }} vote{{ node.rating_score|pluralize }}
+                  <section>
+                    {{ node.body_html|safe }}
+                    {% if not node.is_leaf_node %}
+                        <ul class="children accordion" data-accordion>
+                            {{ children }}
+                        </ul>
+                    {% endif %}
+                  </section>
+              </li>
+          {% endrecursetree %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</div>

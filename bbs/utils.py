@@ -89,6 +89,8 @@ def sanitize_markdown(value):
                     'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em',
                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
                     'i', 'li', 'ol', 'p', 'pre', 'strong', 'ul',
+                    'table', 'thead', 'tr', 'th', 'tbody', 'td',
+                    'div', 'br', 'span',
                 ],
             )
     )
