@@ -1,5 +1,10 @@
 {% extends "bbs/base.html" %}
 {% block title %}Editing "{{ form.instance.title }}"{% endblock %}
+{% block extrahead %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+{% endblock %}
 {% block content %}
   <div class="row">
     <div class="container">
@@ -15,10 +20,15 @@
             <label for="id_description"></label>
             {{ form.description }}
             {% if form.description.errors %}<small class="error">{{ form.description.errors|join:", " }}</small>{% endif %}
+            <div v-html="compiledMarkdown"></div>
           </div>
           <div class="button-group"><button type="submit" class="btn btn-primary">Save</button></div>
         </form>
       </div>
     </div>
   </div>
+{% endblock %}
+{% block extrafooter %}
+  {% load staticfiles %}
+  <script src="{% static 'bbs/markdown.js' %}"></script>
 {% endblock %}
