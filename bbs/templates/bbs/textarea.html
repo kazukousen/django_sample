@@ -1,0 +1,2 @@
+<textarea id="{{ widget.name }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %} v-model="input" @input="update">
+{% if widget.value %}{{ widget.value }}{% endif %}</textarea>

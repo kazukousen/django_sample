@@ -84,7 +84,7 @@ def object_detail(request, queryset, object_id=None, template_name=None,
 def sanitize_markdown(value):
     return mark_safe(
             bleach.clean(
-                bleach.linkify(markdown_func(value, extensions=['gfm'], tab_length=2)),
+                markdown_func(value, extensions=['gfm'], tab_length=2),
                 tags = [
                     'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em',
                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
