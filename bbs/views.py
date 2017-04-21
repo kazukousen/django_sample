@@ -42,3 +42,8 @@ def edit_post(request, post_id=None, template_name='bbs/edit_post.html'):
         form = PostForm(instance=post)
 
     return render(request, template_name, {'form': form})
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    post.delete()
+    return redirect('bbs:post_list')

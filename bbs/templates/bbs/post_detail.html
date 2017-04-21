@@ -10,7 +10,8 @@
         </h1>
         <p>
           date: <strong>{{ object.pub_date }}</strong> -- {{ object.rating_score }} vote{{ object.rating_score|pluralize }}
-          <a href="{% url 'bbs:post_edit' post_id=object.id %}">Edit</a>
+          <strong><a href="{% url 'bbs:post_edit' post_id=object.id %}">Edit</a></strong>
+          <a href="{% url 'bbs:post_delete' post_id=object.id %}">Delete</a>
         </p>
       </div>
       <article>
