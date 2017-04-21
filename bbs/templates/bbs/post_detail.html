@@ -9,7 +9,8 @@
           {{ object.title }}
         </h1>
         <p>
-          date: <strong>{{ object.pub_date }}</strong>
+          date: <strong>{{ object.pub_date }}</strong> -- {{ object.rating_score }} vote{{ object.rating_score|pluralize }}
+          <a href="{% url 'bbs:post_edit' post_id=object.id %}">Edit</a>
         </p>
       </div>
       <article>
@@ -45,5 +46,8 @@
     </div>
   </div>
   {% endif %}
+  <div class="row">
+    <p><a href="{% url 'bbs:post_list' %}">一覧へ戻る</a></p>
+  </div>
 </div>
 {% endblock %}

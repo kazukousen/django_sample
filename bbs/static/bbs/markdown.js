@@ -1,7 +1,10 @@
 var editor = new Vue({
   el: '#editor',
   data: {
-    input: ''
+    input: null
+  },
+  created: function(){
+    this.input = $('#description').text();
   },
   computed: {
     compiledMarkdown: function () {

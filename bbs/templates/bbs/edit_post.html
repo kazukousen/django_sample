@@ -9,8 +9,8 @@
   <div class="row">
     <div class="container">
       <div class="row">
-        <h3 class="page-header">Editing "{{ form.instance.title }}"</h3>
-        <form class="form-horizontal" role="form" method="post" action="">{% csrf_token %}
+        <h3 class="page-header">Editing <a href="{{ form.instance.get_absolute_url }}">{{ form.instance.title }}</a></h3>
+        <form class="form-horizontal" role="form" method="post" action="{% url 'bbs:post_edit' post_id=form.instance.id %}">{% csrf_token %}
           <div class="field {% if form.title.errors %}error{% endif %}">
             <label for="id_title"></label>
             {{ form.title }}
@@ -22,7 +22,7 @@
             {% if form.description.errors %}<small class="error">{{ form.description.errors|join:", " }}</small>{% endif %}
             <div v-html="compiledMarkdown"></div>
           </div>
-          <div class="button-group"><button type="submit" class="btn btn-primary">Save</button></div>
+          <div class="form-group"><button type="submit" class="btn btn-primary">Save</button></div>
         </form>
       </div>
     </div>
