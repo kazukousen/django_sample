@@ -15,3 +15,11 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'description')
         exclude = ('bookmark_count', 'rating_score')
+
+class CommentForm(forms.ModelForm):
+    body = forms.CharField(widget=EditorTextarea)
+
+    class Meta:
+        model = Comment
+        fields = ('body')
+        exclute = ('bookmark_count', 'rating_score')

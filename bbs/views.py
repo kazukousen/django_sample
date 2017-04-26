@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib import messages
 
 from .models import Post, Comment
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from .utils import object_list, object_detail
 
 def post_list(request, queryset=None, **kwargs):
@@ -47,3 +47,25 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     post.delete()
     return redirect('bbs:post_list')
+
+def edit_comment(request, post_id, comment_id=None, template_name='bbs/edit_comment.html'):
+    post = get_object_or_404(Post, pk=post_id)
+    if comment_id:
+        try:
+            comment = post.comment_set.get(pk=comment_id)
+        except Comment.DoesNotExist:
+            raise Http404
+    else:
+        template_name = 'bbs/add_comment.html'
+        comment = Comment(post=post)
+
+    if request.method=='POST':
+        form = CommentForm(instance=comment, data=request.POST)
+        if form.is_valid():
+            comment = form.save()
+            messages.info(request, 'Your comment has been saved')
+            return redirect(post)
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, template_name, {'form': form})
